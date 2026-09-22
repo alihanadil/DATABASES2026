@@ -20,6 +20,7 @@ CREATE TABLESPACE course_data
 
 CREATE TABLESPACE student_data LOCATION 'C:/data/students';
 
+-- LC lines were added because otherwise code was failing due to incompatibilities with the system
 CREATE DATABASE university_distributed
     ENCODING = 'LATIN9'
     LC_COLLATE = 'C'
