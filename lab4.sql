@@ -102,8 +102,11 @@ SELECT first_name || ' ' || last_name AS full_name, ROUND((CURRENT_DATE - hire_d
 SELECT department, AVG(salary) AS avg_salary FROM employees GROUP BY  department;
 
 -- 4.2
-SELECT p.project_name, SUM(hours_worked) AS total_hours FROM assignments a INNER JOIN projects p on p.project_id = a.project_id GROUP BY project_name;
-
+SELECT p.project_name,
+       (SELECT SUM(a.hours_worked)
+        FROM assignments a
+        WHERE a.project_id = p.project_id) AS total_hours
+FROM projects p;
 -- 4.3
 SELECT department, COUNT(department) FROM employees GROUP BY department HAVING COUNT(department) > 1;
 
@@ -127,8 +130,13 @@ SELECT employee_id FROM employees EXCEPT SELECT employee_id FROM assignments;
 SELECT * FROM employees e WHERE EXISTS (SELECT 1 FROM assignments a WHERE e.employee_id = a.employee_id);
 
 -- 6.2
-SELECT * FROM employees WHERE employee_id IN (SELECT a.employee_id FROM assignments a INNER JOIN projects p ON a.project_id =p.project_id WHERE status = 'Active');
-
+SELECT * FROM employees
+WHERE employee_id IN (
+    SELECT employee_id FROM assignments
+    WHERE project_id IN (
+        SELECT project_id FROM projects WHERE status = 'Active'
+    )
+);
 -- 6.3
 SELECT * FROM employees WHERE salary > ANY(SELECT salary FROM employees WHERE department = 'Sales');
 
