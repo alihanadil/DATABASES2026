@@ -2,7 +2,7 @@
 -- Student ID: 25B030124
 
 DROP TABLE IF EXISTS
-    order_details, orders, products, customers, order_items, products_fk,
+    order_details, orders, products, order_items, products_fk,
     categories, books, publishers, authors, employees_dept, student_courses,
     departments, course_enrollments, users, inventory, customers, bookings,
     products_catalog, employees
@@ -45,28 +45,28 @@ INSERT INTO employees (employee_id, first_name, last_name, age, salary)
 VALUES (1, 'Alice', 'Smith', 30, 50000);
 INSERT INTO employees (employee_id, first_name, last_name, age, salary)
 VALUES (2, 'Bob', 'Jones', 45, 75000);
-INSERT INTO employees (employee_id, first_name, last_name, age, salary)
-VALUES (3, 'Charlie', 'Brown', 17, 40000); -- age < 18. fail
-INSERT INTO employees (employee_id, first_name, last_name, age, salary)
-VALUES (4, 'Dana', 'White', 30, 0); -- salary = 0. fail
+-- INSERT INTO employees (employee_id, first_name, last_name, age, salary)
+-- VALUES (3, 'Charlie', 'Brown', 17, 40000); -- age < 18. fail
+-- INSERT INTO employees (employee_id, first_name, last_name, age, salary)
+-- VALUES (4, 'Dana', 'White', 30, 0); -- salary = 0. fail
 
 INSERT INTO products_catalog (product_id, product_name, regular_price, discount_price)
 VALUES (1, 'Laptop', 1000, 800);
 INSERT INTO products_catalog (product_id, product_name, regular_price, discount_price)
 VALUES (2, 'Mouse', 50, 40);
-INSERT INTO products_catalog (product_id, product_name, regular_price, discount_price)
-VALUES (3, 'Phone', 300, 350); -- discount > regular. fail
-INSERT INTO products_catalog (product_id, product_name, regular_price, discount_price)
-VALUES (4, 'Tablet', 0, 10); -- regular = 0. fail
+-- INSERT INTO products_catalog (product_id, product_name, regular_price, discount_price)
+-- VALUES (3, 'Phone', 300, 350); -- discount > regular. fail
+-- INSERT INTO products_catalog (product_id, product_name, regular_price, discount_price)
+-- VALUES (4, 'Tablet', 0, 10); -- regular = 0. fail
 
 INSERT INTO bookings (booking_id, check_in_date, check_out_date, num_guests)
 VALUES (1, '2025-01-01', '2025-01-05', 2);
 INSERT INTO bookings (booking_id, check_in_date, check_out_date, num_guests)
 VALUES (2, '2025-02-01', '2025-02-03', 4);
-INSERT INTO bookings (booking_id, check_in_date, check_out_date, num_guests)
-VALUES (3, '2025-03-05', '2025-03-01', 2); -- in > out. fail
-INSERT INTO bookings (booking_id, check_in_date, check_out_date, num_guests)
-VALUES (4, '2025-04-01', '2025-04-05', 11); -- num_guests > 10. fail
+-- INSERT INTO bookings (booking_id, check_in_date, check_out_date, num_guests)
+-- VALUES (3, '2025-03-05', '2025-03-01', 2); -- in > out. fail
+-- INSERT INTO bookings (booking_id, check_in_date, check_out_date, num_guests)
+-- VALUES (4, '2025-04-01', '2025-04-05', 11); -- num_guests > 10. fail
 
 -- 2.1
 CREATE TABLE customers
@@ -92,10 +92,10 @@ INSERT INTO customers (customer_id, email, phone, registration_date) VALUES
 (1, 'alice@gmail.com', '9843315', '2025-03-12');
 INSERT INTO customers (customer_id, email, phone, registration_date) VALUES
 (2, 'bob@gmail.com', '9843316', '2025-03-13');
-INSERT INTO customers (customer_id, email, phone, registration_date)
-VALUES (NULL, 'charlie@example.com', '555-9999', '2025-03-01'); -- customer_id null. fail
-INSERT INTO customers (customer_id, email, phone, registration_date)
-VALUES (4, NULL, '555-9999', '2025-03-01'); -- email null. fail
+-- INSERT INTO customers (customer_id, email, phone, registration_date)
+-- VALUES (NULL, 'charlie@example.com', '555-9999', '2025-03-01'); -- customer_id null. fail
+-- INSERT INTO customers (customer_id, email, phone, registration_date)
+-- VALUES (4, NULL, '555-9999', '2025-03-01'); -- email null. fail
 INSERT INTO customers (customer_id, email, phone, registration_date)
 VALUES (5, 'dana@example.com', NULL, '2025-04-01'); -- phone nullable. ok
 
@@ -103,10 +103,10 @@ INSERT INTO inventory (item_id, item_name, quantity, unit_price, last_updated)
 VALUES (1, 'Widget', 100, 9.99, '2025-01-01 10:00:00');
 INSERT INTO inventory (item_id, item_name, quantity, unit_price, last_updated)
 VALUES (2, 'Gadget', 50, 19.99, '2025-01-02 10:00:00');
-INSERT INTO inventory (item_id, item_name, quantity, unit_price, last_updated)
-VALUES (3, NULL, 50, 5.00, '2025-01-03 12:00:00'); -- item_name null. fail
-INSERT INTO inventory (item_id, item_name, quantity, unit_price, last_updated)
-VALUES (4, 'Gizmo', 50, 5.00, NULL); -- last_updated null. fail
+-- INSERT INTO inventory (item_id, item_name, quantity, unit_price, last_updated)
+-- VALUES (3, NULL, 50, 5.00, '2025-01-03 12:00:00'); -- item_name null. fail
+-- INSERT INTO inventory (item_id, item_name, quantity, unit_price, last_updated)
+-- VALUES (4, 'Gizmo', 50, 5.00, NULL); -- last_updated null. fail
 -- inventory has no nullable columns
 
 -- 3.1
@@ -132,10 +132,10 @@ ALTER TABLE users ADD CONSTRAINT unique_username UNIQUE (username);
 ALTER TABLE users ADD CONSTRAINT unique_email UNIQUE (email);
 INSERT INTO users (user_id, username, email, created_at) VALUES
 (1, 'Walter White', 'walterreal@gmail.com', '2024-12-12');
-INSERT INTO users (user_id, username, email, created_at) VALUES
-(2, 'Walter White', 'walternotreal@gmail.com', '2025-01-02'); -- dup username. fail
-INSERT INTO users (user_id, username, email, created_at) VALUES
-(3, 'jesse', 'walterreal@gmail.com', '2025-01-03'); -- dup email. fail
+-- INSERT INTO users (user_id, username, email, created_at) VALUES
+-- (2, 'Walter White', 'walternotreal@gmail.com', '2025-01-02'); -- dup username. fail
+-- INSERT INTO users (user_id, username, email, created_at) VALUES
+-- (3, 'jesse', 'walterreal@gmail.com', '2025-01-03'); -- dup email. fail
 
 -- 4.1
 CREATE TABLE departments (
@@ -147,10 +147,10 @@ INSERT INTO departments (dept_id, dept_name, location) VALUES
 (1, 'Engineering', 'Building A'),
 (2, 'Sales', 'Building B'),
 (3, 'HR', 'Building C');
-INSERT INTO departments (dept_id, dept_name, location)
-VALUES (1, 'Marketing', 'Building D'); -- dup id. fail
-INSERT INTO departments (dept_id, dept_name, location)
-VALUES (NULL, 'Finance', 'Building E'); -- null id. fail
+-- INSERT INTO departments (dept_id, dept_name, location)
+-- VALUES (1, 'Marketing', 'Building D'); -- dup id. fail
+-- INSERT INTO departments (dept_id, dept_name, location)
+-- VALUES (NULL, 'Finance', 'Building E'); -- null id. fail
 
 -- 4.2
 CREATE TABLE student_courses
@@ -179,8 +179,8 @@ INSERT INTO employees_dept (emp_id, emp_name, dept_id, hire_date)
 VALUES (1, 'Alice Smith', 1, '2025-01-15');
 INSERT INTO employees_dept (emp_id, emp_name, dept_id, hire_date)
 VALUES (2, 'Bob Jones', 2, '2025-01-20');
-INSERT INTO employees_dept (emp_id, emp_name, dept_id, hire_date)
-VALUES (3, 'Charlie Brown', 99, '2025-02-01'); -- dept 99 missing. fail
+-- INSERT INTO employees_dept (emp_id, emp_name, dept_id, hire_date)
+-- VALUES (3, 'Charlie Brown', 99, '2025-02-01'); -- dept 99 missing. fail
 
 -- 5.2
 CREATE TABLE authors
@@ -248,7 +248,7 @@ INSERT INTO order_items (item_id, order_id, product_id, quantity) VALUES (1, 1, 
 INSERT INTO order_items (item_id, order_id, product_id, quantity) VALUES (2, 1, 2, 1);
 
 -- RESTRICT: cannot delete category 1 while products still reference it.
-DELETE FROM categories WHERE category_id = 1; -- ERROR
+-- DELETE FROM categories WHERE category_id = 1; -- ERROR
 
 SELECT * FROM order_items; -- 2 rows
 DELETE FROM orders WHERE order_id = 1; -- CASCADE removes order_items
@@ -256,7 +256,7 @@ SELECT * FROM order_items; -- 0 rows
 -- order delete succeeds and order_items rows are removed because of ON DELETE CASCADE
 
 -- 6.1
-DROP TABLE IF EXISTS customers, products, orders, order_details CASCADE;
+DROP TABLE IF EXISTS customers, products, orders, order_details, order_items CASCADE;
 CREATE TABLE customers
 (
     customer_id INTEGER PRIMARY KEY,
@@ -322,15 +322,16 @@ SELECT * FROM customers; -- all rows
 SELECT * FROM products WHERE stock_quantity = 0; -- Headset
 SELECT COUNT(*) FROM orders WHERE status NOT IN ('pending','processing','shipped','delivered','cancelled'); -- 0
 
-INSERT INTO customers (customer_id, name, email, phone, registration_date)
-VALUES (6, 'Frank Green', 'alice@example.com', '555-6666', '2025-03-10'); -- dup email. fail
-INSERT INTO products (product_id, name, description, price, stock_quantity)
-VALUES (6, 'Tablet', '10-inch tablet', -100, 20); -- price < 0. fail
-INSERT INTO orders (order_id, customer_id, order_date, total_amount, status)
-VALUES (6, 1, '2025-03-11', 500, 'unknown'); -- bad status. fail
-INSERT INTO order_details (order_detail_id, order_id, product_id, quantity, unit_price)
-VALUES (6, 1, 1, 0, 1000); -- quantity = 0. fail
+-- INSERT INTO customers (customer_id, name, email, phone, registration_date)
+-- VALUES (6, 'Frank Green', 'alice@example.com', '555-6666', '2025-03-10'); -- dup email. fail
+-- INSERT INTO products (product_id, name, description, price, stock_quantity)
+-- VALUES (6, 'Tablet', '10-inch tablet', -100, 20); -- price < 0. fail
+-- INSERT INTO orders (order_id, customer_id, order_date, total_amount, status)
+-- VALUES (6, 1, '2025-03-11', 500, 'unknown'); -- bad status. fail
+-- INSERT INTO order_details (order_detail_id, order_id, product_id, quantity, unit_price)
+-- VALUES (6, 1, 1, 0, 1000); -- quantity = 0. fail
 
+ -- DELETE FROM products WHERE product_id = 1; -- fails due to ON DELETE RESTRICT from order_details
 DELETE FROM customers WHERE customer_id = 1; -- cascades
 SELECT * FROM orders WHERE customer_id = 1; -- 0 rows
 SELECT * FROM order_details WHERE order_id = 1; -- 0 rows
